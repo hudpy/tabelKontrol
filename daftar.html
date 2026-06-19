@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Daftar Materi</title>
+</head>
+<body>
+	<h2>Daftar Materi</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Tanggal</th>
+				<th>Kelas</th>
+				<th>Keterangan</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody id="tbody"></body>
+	</table>
+	<script>
+		const API_URL="https://script.google.com/macros/s/AKfycbxsEkjFgFC2f9G2X-4ksadJVM9AEFLit08Kro4xNb_CGKw4iM4SQEQpCN85FIzXdJJE/exec";
+		
+		async function loadData(){
+			const response=await fetch(API_URL);
+			const data=await response.json();
+			let html="";
+			data.forEach(item=>{
+				html+=`
+					<tr>
+						<td>${item.tanggal}</td>
+						<td>${item.kelas}</td>
+						<td>${item.keterangan}</td>
+						<td>
+							<button onclick="editData(${item.id})">Edit</button>
+							<button onclick="haputData(${item.id})">Hapus</button>
+						</td>
+					</tr>
+				`;
+			});
+			document.getElementById("tbody").innerHTML=html;
+		}
+		
+		function editData(id){
+			location href=`edit.html?id=${id}`;
+		}
+		
+		async function hapusData(id){
+			if(!confirm("hapus data ini?"))
+				return;
+				
+			await fetch(API_URL,{
+				method: "POST",
+				body: JSON.stringify({
+					action: "delete",
+					id: id
+				})
+			});
+			loadData();
+		}
+		
+		loadData();
+	</script>
+</body>
+</html>

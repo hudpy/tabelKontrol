@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Edit Materi</title>
+</head>
+<body>
+	<h2>Edit Data</h2>
+	<form id="formEdit">
+		<p>Tanggal</p>
+		<input type="date" id="tanggal" required>
+		<p>Kelas</p>
+		<input type="text" id="kelas" required>
+		<p>Keterangan</p>
+		<textarea id="keterangan" rows="5" required></textarea>
+		<br><br>
+		<button type="submit">Update</button>
+	</form>
+	<script>
+		const API_URL="https://script.google.com/macros/s/AKfycbxsEkjFgFC2f9G2X-4ksadJVM9AEFLit08Kro4xNb_CGKw4iM4SQEQpCN85FIzXdJJE/exec";
+		
+		const params=new URLSearchParams(location.search);
+		
+		const id=params.get("id");
+		
+		async function loadData(){
+			const response=await fetch(API_URL+"?id="+id);
+			const data=await response.json();
+			document.getElementById("tanggal").value=data.tanggal;
+			document.getElementById("kelas").value=data.kelas;
+			document.getElementById("keterangan").value=data.keterangan;
+		}
+		
+		document.getElementById("formEdit").addEventListener("submit",async function(e){
+			e.preventDefault();
+			await fetch(API_URL,{
+				method: "POST",
+				body: JSON.stringify({
+					action: "update",
+					id: id,
+					tanggal: document.getElementById("tanggal").value,
+					kelas: document.getElementById("kelas").value,
+					keterangan: document.getElementById("keterangan").value
+				})
+			});
+			alert("Data berhasil diupdate");
+			location.href="daftar.html";
+		});
+		
+		loadData();
+	</script>
+</body>
+</html>

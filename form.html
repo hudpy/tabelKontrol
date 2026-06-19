@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Input Materi</title>
+</head>
+<body>
+	<h2>Tambah Data</h2>
+	<form id="formMateri">
+		<label>Tanggal</label>
+		<input type="date" id="tanggal">
+		<label>Kelas</label>
+		<input type="text" id="kelas">
+		<label>Keterangan</label>
+		<textarea id="keterangan" rows="5" required></textarea>
+		<br><br>
+		<button type="submit">Simpan</button>
+	</form>
+	<script>
+		const API_URL="https://script.google.com/macros/s/AKfycbxsEkjFgFC2f9G2X-4ksadJVM9AEFLit08Kro4xNb_CGKw4iM4SQEQpCN85FIzXdJJE/exec";
+		document.getElementById("formMateri").addEventListener("submit",async function(e){
+			e.preventDefault();
+			const data={
+				action:"create",
+				tanggal: document.getElementById("tanggal").value,
+				kelas: document.getElementById("kelas").value,
+				keterangan: document.getElementById("keterangan").value
+			};
+			try {
+				await fetch(API_URL,{
+					method: "POST",
+					body: JSON.stringify(data)
+				});
+				alert("Data tersimpan!");
+				this.reset();
+			} catch(err){
+				alert("Gagal menyimpan data!");
+				console.log(err);
+			}
+		});
+	</script>
+</body>
+</html>
