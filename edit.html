@@ -17,14 +17,14 @@
 		<button type="submit">Update</button>
 	</form>
 	<script>
-		const API_URL="https://script.google.com/macros/s/AKfycbxsEkjFgFC2f9G2X-4ksadJVM9AEFLit08Kro4xNb_CGKw4iM4SQEQpCN85FIzXdJJE/exec";
+		const API_URL="https://script.google.com/macros/s/AKfycby_qEGM6xJm9d9y4mNU8riXxJc6BIVr54lj-CJmIYDZwk-p4o-oA81Ve0YiBllvwIeJNQ/exec";
 		
 		const params=new URLSearchParams(location.search);
 		
 		const id=params.get("id");
 		
 		async function loadData(){
-			const response=await fetch(API_URL+"?id="+id);
+			const response=await fetch(`${API_URL}?action=get&id=${id}`);
 			const data=await response.json();
 			document.getElementById("tanggal").value=data.tanggal;
 			document.getElementById("kelas").value=data.kelas;
@@ -33,16 +33,7 @@
 		
 		document.getElementById("formEdit").addEventListener("submit",async function(e){
 			e.preventDefault();
-			await fetch(API_URL,{
-				method: "POST",
-				body: JSON.stringify({
-					action: "update",
-					id: id,
-					tanggal: document.getElementById("tanggal").value,
-					kelas: document.getElementById("kelas").value,
-					keterangan: document.getElementById("keterangan").value
-				})
-			});
+			await fetch(`${API_URL}?${params}`);
 			alert("Data berhasil diupdate");
 			location.href="daftar.html";
 		});

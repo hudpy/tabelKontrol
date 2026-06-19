@@ -18,10 +18,10 @@
 		<tbody id="tbody"></body>
 	</table>
 	<script>
-		const API_URL="https://script.google.com/macros/s/AKfycbxsEkjFgFC2f9G2X-4ksadJVM9AEFLit08Kro4xNb_CGKw4iM4SQEQpCN85FIzXdJJE/exec";
+		const API_URL="https://script.google.com/macros/s/AKfycby_qEGM6xJm9d9y4mNU8riXxJc6BIVr54lj-CJmIYDZwk-p4o-oA81Ve0YiBllvwIeJNQ/exec";
 		
 		async function loadData(){
-			const response=await fetch(API_URL);
+			const response=await fetch(`${API_URL}?action=read`);
 			const data=await response.json();
 			let html="";
 			data.forEach(item=>{
@@ -45,16 +45,10 @@
 		}
 		
 		async function hapusData(id){
-			if(!confirm("hapus data ini?"))
+			if(!confirm("Hapus?"))
 				return;
 				
-			await fetch(API_URL,{
-				method: "POST",
-				body: JSON.stringify({
-					action: "delete",
-					id: id
-				})
-			});
+			await fetch(`${API_URL}?action=delete&id=${id}`);
 			loadData();
 		}
 		
