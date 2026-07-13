@@ -1,0 +1,11 @@
+
+.tabel 
+{
+	border: 1px solid black;
+}
+
+thead,tbody,th,tr,td
+{
+	border: 1px solid grey;
+	padding: 16px;
+}
