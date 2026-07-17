@@ -6,13 +6,23 @@
   font-size: large;
 }
 
+html, body {
+  min-height: 100vh;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   background-image: url("logo_starwinner.jpg");
   background-position: top left;
   background-repeat: no-repeat;
   background-size: 200px;
   background-position-x: 10px;
   background-position-y: 10px;
+}
+
+main {
+  flex: 1;
 }
 
 header h2 {
