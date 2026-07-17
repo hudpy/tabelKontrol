@@ -1,11 +1,62 @@
-
-.tabel 
-{
-	border: 1px solid black;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-thead,tbody,th,tr,td
-{
-	border: 1px solid grey;
-	padding: 16px;
+body {
+  background-image: url("logo_starwinner.jpg");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: 200px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+#input {
+  margin: 10px 0 50px 0;
+}
+
+#display {
+  margin: 40px 0 20px 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+}
+
+.tabel {
+  border: 1px solid black;
+}
+
+thead,
+tbody,
+th,
+tr,
+td {
+  border: 1px solid grey;
+  padding: 16px;
+}
+
+footer {
+  margin-top: 50px;
 }

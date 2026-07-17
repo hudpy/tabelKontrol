@@ -1,28 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-	<meta charset="UTF-8">
-	<title>TABEL KONTROL</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
-<body>
-	<section>
-		<h1>Input</h1>
-		<div>
-			<input id="tanggal" type="date" placeholder="dd/mm/yy">
-			<input id="kelas" type="text" placeholder="Contoh: XI IPA 11">
-			<input id="mata_pelajaran" type="text" placeholder="mata pelajaran">
-			<input id="keterangan" type="text" placeholder="keterangan">
-			<button onclick="tambahData()">
-				Tambah
-			</button>
-		</div>
-	</section>
-	<section>
-		<h1>Tampilan</h1>
-		<div id="hasil"></div>
-		<script src="script.js"></script>
-	</section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TABEL KONTROL</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <section id="input">
+      <h1>Input</h1>
+      <div id="form">
+        <span
+          ><label for="tanggal">Tanggal: </label
+          ><input
+            style="padding: 4px"
+            id="tanggal"
+            type="date"
+            placeholder="dd/mm/yy"
+        /></span>
+        <span>
+          <label for="kelas">Kelas: </label>
+          <select name="" id="kelas" style="padding: 4px">
+            <option value="">Pilih kelas</option>
+            <option value="12 IPA 11">12 IPA 11</option>
+            <option value="12 IPA 12">12 IPA 12</option>
+            <option value="12 IPA 13">12 IPA 13</option>
+            <option value="12 IPA 14">12 IPA 14</option>
+            <option value="12 IPA 15">12 IPA 15</option>
+            <option value="12 IPA 16">12 IPA 16</option>
+            <option value="12 IPA 17">12 IPA 17</option>
+            <option value="12 IPS 18">12 IPS 18</option>
+            <option value="12 IPS 19">12 IPS 19</option>
+            <option value="12 IPA 21">12 IPA 21</option>
+            <option value="12 IPS 22">12 IPS 22</option>
+            <option value="12 IPS 111">12 IPS 111</option>
+            <option value="11 IPA 11">11 IPA 11</option>
+            <option value="11 IPA 21">11 IPA 21</option>
+            <option value="11 IPA 22">11 IPA 22</option>
+            <option value="11 IPA 23">11 IPA 23</option>
+            <option value="11 IPA 24">11 IPA 24</option>
+            <option value="11 IPA 25">11 IPA 25</option>
+            <option value="11 IPA 26">11 IPA 26</option>
+            <option value="11 IPS 27">11 IPS 27</option>
+          </select>
+        </span>
+        <span>
+          <label for="mata_pelajaran">Mapel: </label>
+          <select name="" id="mata_pelajaran" style="padding: 4px">
+            <option value="">Pilih mapel</option>
+            <option value="MATWA">MATWA</option>
+            <option value="MATLAN">MATLAN</option>
+            <option value="FIS">FIS</option>
+            <option value="BIO">BIO</option>
+            <option value="KIM">KIM</option>
+            <option value="EKO">EKO</option>
+            <option value="GEO">GEO</option>
+            <option value="SEJ">SEJ</option>
+            <option value="BIND">BIND</option>
+            <option value="BING">BING</option>
+          </select>
+        </span>
+        <span>
+          <label for="keterangan">Keterangan: </label>
+          <input
+            style="padding: 4px"
+            id="keterangan"
+            type="text"
+            placeholder="Keterangan materi"
+          />
+        </span>
+        <button onclick="tambahData()" style="padding: 4px">Upload</button>
+      </div>
+    </section>
+
+    <hr />
+
+    <section id="display">
+      <h1>Tampilan</h1>
+      <div style="display: flex; gap: 16px">
+        <span>
+          <label for="cari_kelas">Kelas: </label>
+          <select name="" id="cari_kelas" style="padding: 4px">
+            <option value="">Pilih kelas</option>
+            <option value="">Pilih kelas</option>
+            <option value="12 IPA 11">12 IPA 11</option>
+            <option value="12 IPA 12">12 IPA 12</option>
+            <option value="12 IPA 13">12 IPA 13</option>
+            <option value="12 IPA 14">12 IPA 14</option>
+            <option value="12 IPA 15">12 IPA 15</option>
+            <option value="12 IPA 16">12 IPA 16</option>
+            <option value="12 IPA 17">12 IPA 17</option>
+            <option value="12 IPS 18">12 IPS 18</option>
+            <option value="12 IPS 19">12 IPS 19</option>
+            <option value="12 IPA 21">12 IPA 21</option>
+            <option value="12 IPS 22">12 IPS 22</option>
+            <option value="12 IPS 111">12 IPS 111</option>
+            <option value="11 IPA 11">11 IPA 11</option>
+            <option value="11 IPA 21">11 IPA 21</option>
+            <option value="11 IPA 22">11 IPA 22</option>
+            <option value="11 IPA 23">11 IPA 23</option>
+            <option value="11 IPA 24">11 IPA 24</option>
+            <option value="11 IPA 25">11 IPA 25</option>
+            <option value="11 IPA 26">11 IPA 26</option>
+            <option value="11 IPS 27">11 IPS 27</option>
+          </select>
+        </span>
+        <span>
+          <label for="cari_mapel">Mapel: </label>
+          <select name="" id="cari_mapel" style="padding: 4px">
+            <option value="">Pilih mapel</option>
+            <option value="MATWA">MATWA</option>
+            <option value="MATLAN">MATLAN</option>
+            <option value="FIS">FIS</option>
+            <option value="BIO">BIO</option>
+            <option value="KIM">KIM</option>
+            <option value="EKO">EKO</option>
+            <option value="GEO">GEO</option>
+            <option value="SEJ">SEJ</option>
+            <option value="BIND">BIND</option>
+            <option value="BING">BING</option>
+          </select>
+        </span>
+        <button onclick="CariData()" style="padding: 4px">Cari</button>
+      </div>
+      <div id="hasil"></div>
+      <script src="script.js"></script>
+    </section>
+    <footer>
+      <p style="text-align: center; padding: 8px">&copy Star Winner Official</p>
+    </footer>
+  </body>
 </html>
