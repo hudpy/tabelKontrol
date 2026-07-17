@@ -112,4 +112,12 @@ td {
     border: 1px solid grey;
     padding: 4px;
   }
+
+  footer {
+    margin: 0 0 10px 0;
+  }
+
+  footer p {
+    padding: 4px;
+  }
 }
